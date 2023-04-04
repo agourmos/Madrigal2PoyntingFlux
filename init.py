@@ -32,7 +32,7 @@ This is a flow down of the programs scripts and functions
 """
 from initSettings import initSettings
 from functions.MadReducPF import MadReducPF
-from functions.PlotPF import PlotPF
+from functions.PlotFields import PlotFields
 
 #%% Section A -----------------------------------------------------------------
 # Establish settings variables to input into other functions
@@ -53,4 +53,4 @@ MadReducPF(settings)
 #------------------------------------------------------------------------------
 
 # Plot and save plots
-PlotPF(settings)
+PlotFields(settings)

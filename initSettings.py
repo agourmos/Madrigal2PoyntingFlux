@@ -20,7 +20,7 @@ extracting data and plotting it
 import os
 
 def initSettings():
-    #%% Section A -------------------------------------------------------------
+    #%% Section B -------------------------------------------------------------
     # Determine what file type is being extracted and what variables will be 
     # saved
     #--------------------------------------------------------------------------
@@ -38,22 +38,29 @@ def initSettings():
     # Determine which parameters to extract into a new .txt file
 
     #                         1 = [on]    ---or---    0 = [off]
+    # Always keep on ----------------------------------------------------------
     year            = 1     # Year
     month           = 1     # Month
     day             = 1     # Day
     hour            = 1     # Hour
     minute          = 1     # Minute
     sec             = 1     # Seconds
+    # -------------------------------------------------------------------------
+
     recNO           = 0     #
     kinDAT          = 0     #
     kinST           = 0     #
     UT1_unix        = 0     #
     UT2_unix        = 0     #
+    
+    # Always keep on ----------------------------------------------------------
     GDALT           = 1     #
     GDLAT           = 1     #
     GLON            = 1     #
     MLAT            = 1     #
     MLT             = 1     #
+    # -------------------------------------------------------------------------
+
     ION_V_SAT_for   = 1     #
     ION_V_SAT_left  = 1     #
     VERT_ION_V_up   = 0     #
@@ -70,20 +77,36 @@ def initSettings():
     RPA_flag        = 0     #
     IDM_flag        = 0     #
     
-    #%% Section B -------------------------------------------------------------
+    #%% Section C -------------------------------------------------------------
     # Determine how data will be parsed and plotted
     #--------------------------------------------------------------------------
     # Define parseing type (i.e pass-by-pass or hourly)
     parseType = 1; # 0 = Hourly --or-- 1 = pass-by-pass
     
     # Determine whether or not colorbar will have fixed values or not
-    boundsType = 1; # 0 = Variable --or-- 1 = fixed
+    boundsType = 2; # 0 = variable, 1 = fixed, 2 = user decided
     
-    # Determine whether or not to plot magnetic field values along wiht PF
-    plotMF = 1; # 0 = no/off --or-- 1 = yes/on
+    # IF the above choice is 2, define the bounds you would like to use
+    #bounds = [-0.015,0.0]
+    bounds = [-0.025,-0.015]
     
-    # Determine whether or not to plot magnetic field values along wiht PF
-    plotEF = 1; # 0 = no/off --or-- 1 = yes/on
+    # Determine whether or not to plot poynting flux
+    plotPF = 1; # 0 = no/off --or-- 1 = yes/on
+    
+    # Determine whether or not to plot magnetic field
+    plotMF = 0; # 0 = no/off --or-- 1 = yes/on
+    
+    # Determine whether or not to plot velocity field
+    plotVF = 0; # 0 = no/off --or-- 1 = yes/on
+    
+    # Determine whether or not to plot electric
+    plotEF = 0; # 0 = no/off --or-- 1 = yes/on
+    
+    # Determine whether or not to plot all poynting flux together
+    plotTotalPF = 2; # 0 = off 1 = yes all/on --or-- 2 = yes daily/on
+    
+    # Determine the passes to be used in the plotting (only north for now)
+    passes = [];
 
     
     #%% END OF USER DEFINE PARAMETERS -----------------------------------------
@@ -117,6 +140,7 @@ def initSettings():
                 "parameter_names":parameter_names,
                 "parameter_params":parameter_params,
                 "parseType":parseType,"boundsType":boundsType,
-                "plotMF":plotMF,"plotEF":plotEF}
+                "plotMF":plotMF,"plotVF":plotVF,"plotEF":plotEF,"plotPF":plotPF,
+                "bounds":bounds,"plotTotalPF":plotTotalPF,"passes":passes}
     
     return settings
